@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         New Userscript
+// @name         list all chapters honey-manga.com.ua
 // @namespace    http://tampermonkey.net/
 // @version      2025-12-22
 // @description  try to take over the world!
@@ -14,18 +14,16 @@
 
   const nameClass = ".MuiTabPanel-root > .mt-12>div:nth-child(3) ";
 
-  let container = window.document.querySelector(nameClass);
-
-  if (!container) {
-    await new Promise((r) => setTimeout(r, 2000));
-    container = window.document.querySelector(nameClass);
-  }
+  await new Promise((r) => setTimeout(r, 2000));
+  const container = window.document.querySelector(nameClass);
 
   if (!container) return;
 
+  console.log("container", container);
+
   if (container.className.includes("isNewUserscriptContainer")) return;
 
-  container.className += " " + "isNewUserscriptContainer";
+  container.className += " isNewUserscriptContainer";
 
   const mangaId = window.location.pathname.split("/book/")[1];
   const apiUrl = `https://data.api.honey-manga.com.ua/v2/chapter/cursor-list`;
